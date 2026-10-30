@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#eef3e6">
+<meta name="description" content="期中複習島：選你的科目，走進 3D 群島，讀重點、做練習、收集島章。">
+<title>期中複習島</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='48'%3E🏝️%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#eef3e6;--surface:#fffff6;--ink:#243b2c;--muted:#52634e;--line:#b8c7ac;--primary:#3f7d3a;--accent:#e3a33b;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#1b2a20;--surface:#263b2c;--ink:#f0f5e7;--muted:#c1d0b8;--line:#61745e;--primary:#a9d699;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 20% 0%,#cfe3d4 0,transparent 45%),radial-gradient(circle at 90% 20%,#f3e3bf 0,transparent 40%),var(--bg);font:17px/1.65 "Microsoft JhengHei","Noto Sans TC",sans-serif;color:var(--ink)}
+@media (prefers-color-scheme:dark){body{background:var(--bg)}}
+main{max-width:980px;margin:0 auto;padding:48px 16px 40px}
+.eyebrow{color:var(--primary);font-weight:700;letter-spacing:.08em;font-size:14px}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.15;margin:6px 0 10px}
+.lead{color:var(--muted);max-width:640px;margin:0 0 32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.card{display:flex;flex-direction:column;gap:6px;padding:20px;border:1px solid var(--line);border-radius:20px;background:var(--surface);color:inherit;text-decoration:none;box-shadow:0 12px 40px #1d3b2814;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:var(--primary)}
+.card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.icon{font-size:34px;line-height:1}
+.card strong{font-size:21px}
+.meta{font-size:14px;color:var(--muted)}
+.go{margin-top:auto;padding-top:8px;color:var(--primary);font-weight:700}
+.notes{margin-top:36px;font-size:15px;color:var(--muted)}
+.notes li{margin-bottom:4px}
+@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+</style>
+</head>
+<body>
+<main>
+<span class="eyebrow">MIDTERM REVIEW ISLANDS · 115-1</span>
+<h1>期中複習島</h1>
+<p class="lead">選你的科目，走進 3D 群島。每座島是一週的重點：先讀重點，再和導師對話接受挑戰，答對就能蓋島章。集滿一半島章，就能挑戰中央島的最終關卡。</p>
+<div id="courses" class="grid" aria-live="polite"><p>載入科目中…</p></div>
+<ul class="notes">
+<li>練習題都是老師另外出的，<strong>不是期中考題</strong>；每次挑戰會從題庫隨機抽題。</li>
+<li>進度只存在這台裝置的瀏覽器，不會傳給任何人。換裝置時，用「冒險護照」裡的接關碼。</li>
+<li>電腦和手機都能玩；不想看 3D，可以按「文字清單」。</li>
+</ul>
+</main>
+<script>
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+fetch('./data/courses.json').then(r=>{if(!r.ok)throw Error();return r.json()}).then(list=>{
+ document.querySelector('#courses').innerHTML=list.map(c=>`<a class="card" href="play.html?c=${encodeURIComponent(c.id)}"><span class="icon" aria-hidden="true">${esc(c.icon)}</span><strong>${esc(c.title)}</strong><span>${esc(c.tagline)}</span><span class="meta">${esc(c.audience)} · 範圍 ${esc(c.scope)} · ${c.islands} 座島</span><span class="go">出發 →</span></a>`).join('');
+}).catch(()=>{document.querySelector('#courses').innerHTML='<p>科目清單載入失敗，請重新整理。</p>'});
+</script>
+</body>
+</html>

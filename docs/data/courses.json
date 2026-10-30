@@ -1,0 +1,47 @@
+[
+ {
+  "id": "gchem",
+  "title": "普化期中冒險島",
+  "tagline": "從測量到莫耳，三週重點一島一島收集",
+  "audience": "大一普通化學",
+  "scope": "W1–W3",
+  "islands": 6,
+  "icon": "🧪"
+ },
+ {
+  "id": "biochem",
+  "title": "生化期中冒險島",
+  "tagline": "走過七座島，複習生物化學第 1–7 週",
+  "audience": "國合班大學部生物化學（A2 中文）",
+  "scope": "W1–W7",
+  "islands": 7,
+  "icon": "🔬"
+ },
+ {
+  "id": "foodsci",
+  "title": "食科期中冒險島",
+  "tagline": "四週重點六座島，一起複習食品科學！",
+  "audience": "國合班大一 食品科學概論",
+  "scope": "W1–W4",
+  "islands": 6,
+  "icon": "🔬"
+ },
+ {
+  "id": "chinese",
+  "title": "華語食光島",
+  "tagline": "讀食品文章、練寫句子，收集八枚島章！",
+  "audience": "華語 A2–B1 外籍生：食品營養華語寫作 I",
+  "scope": "W1–W8",
+  "islands": 8,
+  "icon": "📖"
+ },
+ {
+  "id": "foodlab",
+  "title": "食品分析實驗期中島",
+  "tagline": "從量器到滴定，W1–W4 一次複習",
+  "audience": "五專五年級 食品分析實驗",
+  "scope": "W1–W4",
+  "islands": 6,
+  "icon": "🧪"
+ }
+]
