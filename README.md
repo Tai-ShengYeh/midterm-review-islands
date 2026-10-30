@@ -33,4 +33,9 @@
 - 島數 n 決定解鎖門檻（ceil(n/2)），規則寫在 `build.py` 的 `rpgRules`。
 
 ## 部署
-整個 `docs/` 是純靜態網站，不需要建置，可以直接放到 GitHub Pages 或 Netlify。目前還沒有部署。
+已部署到 GitHub Pages（2026-10-30），由 `main` 分支的 `/docs` 發布：
+
+- 選科頁：https://tai-shengyeh.github.io/midterm-review-islands/
+- 單科直連：`https://tai-shengyeh.github.io/midterm-review-islands/play.html?c=<科目>`
+
+更新方式：改題目 → `python build.py` → commit → push，約 1 分鐘後上線。
