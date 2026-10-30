@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="zh-Hant" data-theme="forest">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#eef3e6"><meta name="description" content="期中複習島：讀重點、做練習、收集島章。"><title>期中複習島</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='48'%3E🏝️%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="styles.css"><script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"}}</script></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#eef3e6"><meta name="description" content="期中複習島：讀重點、做練習、收集島章。"><title>期中複習島</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='48'%3E🏝️%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="styles.css?v=20261030f"><script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"}}</script></head>
 <body>
 <a href="#places" class="skip">跳到島嶼清單</a>
 <div id="world" aria-label="浮空群島 3D 場景"></div><div id="labels"></div>
 <header class="topbar"><a class="brand" href="./" title="換一科複習"><span class="brandmark">✦</span><span><span id="brand-title" data-motion-title>期中複習島</span><small id="brand-sub">MIDTERM REVIEW</small></span></a><div class="top-actions"><span id="clock"></span><button id="help" aria-label="操作說明">?</button><button id="settings">環境設定</button></div></header>
 <section class="intro"><span id="intro-eyebrow" class="eyebrow">期中複習</span><h1 id="intro-title" data-motion-title>期中複習島</h1><p id="intro-tagline"></p><div id="intro-tags" class="tags"></div></section>
 <aside class="journey"><div class="row"><strong id="player-name">自由探索者</strong><button id="account">換冒險者</button></div><div id="stats">載入中…</div><div id="mini-stamps" aria-label="島章進度"></div><button id="passport" class="wide">打開冒險護照 ↗</button></aside>
-<nav class="world-tools" aria-label="場景工具"><button id="overview">⌂ 全景</button><button id="motion" aria-pressed="false">減少動態</button><button id="mode3d">文字清單</button></nav>
-<aside class="environment-controls" aria-label="季節、天氣與導覽">
+<nav class="world-tools" aria-label="場景工具"><button id="overview">⌂ 全景</button><button id="motion" aria-pressed="false">減少動態</button><button id="mode3d">文字清單</button><button id="env-toggle" aria-expanded="false" aria-controls="env-panel">🌦 天氣</button></nav>
+<aside id="env-panel" class="environment-controls" aria-label="季節、天氣與導覽">
 <label for="season-select">季節<select id="season-select"><option value="spring">春・櫻花</option><option value="summer">夏・陽光</option><option value="autumn">秋・落葉</option><option value="winter">冬・小雪</option></select></label>
 <label for="weather-select">天氣<select id="weather-select"><option value="sunny">晴天</option><option value="rain">下雨</option><option value="typhoon">颱風</option></select></label>
 <button id="tour-start" class="wide">導覽群島 →</button>
@@ -17,10 +17,10 @@
 <section id="tour-card" hidden aria-label="群島導覽字幕與控制"><div aria-live="polite" aria-atomic="true"><small id="tour-station"></small><h2 id="tour-name"></h2><p id="tour-intro"></p></div><div class="tour-actions"><button id="tour-prev">上一站</button><button id="tour-pause" aria-pressed="false">暫停</button><button id="tour-next">下一站</button><button id="tour-close">關閉導覽</button></div></section>
 <footer class="bottom"><button id="show-list" class="primary">島嶼清單 <span>↗</span></button><span class="scene-hint">拖曳旋轉 · 滾輪／雙指縮放 · 點島探索</span><button id="bag">🎒 背包 <span id="bag-count">3</span></button></footer>
 <section id="places" class="place-list" hidden aria-label="島嶼清單"><div class="row"><h2>選一座島，開始複習</h2><button data-close="places" aria-label="關閉島嶼清單">✕</button></div><label>搜尋島嶼與重點<input id="search" type="search"></label><label>分類海域<select id="category"><option value="">全部海域</option></select></label><div id="island-list"></div><p class="muted">全部重點與挑戰都能從清單操作，不必開啟 3D。<a href="./">換一科複習</a></p></section>
-<section id="panel" class="panel" hidden role="dialog" aria-modal="false" aria-labelledby="panel-title"><div class="panel-head"><div><span id="panel-kicker" class="eyebrow"></span><h2 id="panel-title"></h2></div><button id="close-panel" aria-label="關閉內容面板">✕</button></div><div id="panel-body"></div></section>
+<section id="panel" class="panel" hidden role="dialog" aria-modal="false" aria-labelledby="panel-title"><button id="panel-grip" aria-label="展開內容面板" aria-expanded="false"><span></span></button><div class="panel-head"><div><span id="panel-kicker" class="eyebrow"></span><h2 id="panel-title"></h2></div><button id="close-panel" aria-label="關閉內容面板">✕</button></div><div id="panel-body"></div></section>
 <dialog id="modal"><div class="row"><h2 id="modal-title"></h2><button id="close-modal" aria-label="關閉對話框">✕</button></div><div id="modal-body"></div></dialog>
 <div id="bubble" class="bubble" hidden role="dialog" aria-label="居民與動物對話"></div>
 <div id="toast" role="status" aria-live="polite"></div>
 <button id="skip-film" hidden>跳過開場 →</button><noscript>請開啟 JavaScript 才能使用期中複習島。</noscript>
-<script type="module" src="js/app.js"></script>
+<script type="module" src="js/app.js?v=20261030f"></script>
 </body></html>

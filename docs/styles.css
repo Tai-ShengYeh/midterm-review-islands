@@ -36,3 +36,83 @@ html[data-reduced-motion=true] .stamp-arrival::after{display:none}
 .intro p{max-width:none;font-size:14px}@media(max-width:600px){.intro p{font-size:12px}}
 
 @media(max-width:600px){.intro{top:96px;width:265px}.intro>.eyebrow,.intro>.tags{display:none}.intro h1{font-size:26px;line-height:1.2;margin:5px 0 8px}.intro p{font-size:11px;margin:0}.intro::before{inset:-10px}}
+
+/* 手機版面（2026-10-30 改版）：工具集中在上、下兩條，中間露出 3D 群島；面板是可展開的底部抽屜 */
+#env-toggle,#panel-grip{display:none}
+@media(max-width:600px){
+ .topbar{padding:calc(10px + env(safe-area-inset-top)) 12px 0}
+ #help{display:inline-block}
+ .intro{display:none}
+ .journey{top:calc(70px + env(safe-area-inset-top));bottom:auto;left:12px;right:12px;width:auto;padding:6px 8px 6px 12px;border-radius:16px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:0 8px}
+ .journey .row{grid-column:1;min-width:0;justify-content:flex-start}
+ .journey .row strong{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .journey .row button,.journey #passport{font-size:12px;padding:6px 10px;width:auto}
+ .journey #passport{grid-column:2;grid-row:1}
+ .journey #stats{grid-column:1/-1;font-size:12px;margin:0 0 2px;line-height:1.4}
+ .journey #mini-stamps{display:none}
+ .world-tools{left:12px;right:12px;bottom:calc(80px + env(safe-area-inset-bottom));flex-direction:row;gap:6px}
+ .world-tools button{flex:1;min-width:0;font-size:12px;padding:6px 4px;white-space:nowrap}
+ #env-toggle{display:block}
+ .bottom{left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom))}
+ .bottom .primary{min-height:56px}
+ .bottom #bag{min-height:56px}
+ .environment-controls{display:none}
+ body.env-open .environment-controls{display:grid;left:12px;right:12px;width:auto;bottom:calc(136px + env(safe-area-inset-bottom));grid-template-columns:1fr 1fr;gap:6px 10px;padding:12px}
+ body.env-open .environment-controls>button{grid-column:1/-1;min-height:44px}
+ .environment-controls select{min-height:44px}
+ #typhoon-banner{top:calc(160px + env(safe-area-inset-top))}
+ .bubble{bottom:calc(136px + env(safe-area-inset-bottom))}
+ .panel{height:72dvh;padding:0 18px calc(28px + env(safe-area-inset-bottom));transition:height .25s}
+ body.panel-tall .panel{height:calc(100dvh - 8px)}
+ #panel-grip{display:block;position:sticky;top:0;width:calc(100% + 36px);margin:0 -18px 4px;min-height:44px;padding:18px 0 14px;border:0;border-radius:0;background:var(--surface);z-index:2}
+ #panel-grip span{display:block;width:44px;height:5px;margin:0 auto;border-radius:3px;background:var(--line)}
+ .panel-head{padding-top:4px}
+ .tabs{top:44px}
+ .place-list .muted a{display:inline-block;padding:10px 4px;min-height:44px}
+ .place-list{top:calc(70px + env(safe-area-inset-top));bottom:calc(80px + env(safe-area-inset-bottom))}
+ .quiz-option{padding:14px 12px;font-size:16px}
+}
+/* 手機橫放（高度小）：介紹收起，旅程卡縮成一條，面板占右側全高 */
+@media(max-height:500px) and (min-width:601px){
+ .intro{display:none}
+ .topbar{padding:8px 14px}
+ .brandmark{width:36px;height:36px;font-size:22px}
+ .brand{font-size:16px}
+ .journey{top:58px;bottom:auto;left:14px;width:250px;padding:8px 12px}
+ .journey #mini-stamps{display:none}
+ .journey #stats{margin:2px 0 6px}
+ .world-tools{right:14px;bottom:12px;flex-direction:row}
+ .world-tools button{font-size:12px;padding:6px 10px}
+ .environment-controls{right:14px;bottom:64px;width:230px;grid-template-columns:1fr 1fr;padding:8px 10px}
+ .environment-controls label{font-size:11px}
+ .bottom{left:14px;right:auto;bottom:12px}
+ .bottom .primary{min-width:0;min-height:48px;padding:10px 18px}
+ .bottom #bag{min-height:48px;margin-left:8px}
+ .scene-hint{display:none}
+ .panel{top:8px;bottom:8px;right:8px;width:min(460px,58vw);padding:16px 18px}
+ body.panel-open .environment-controls,body.panel-open .world-tools{visibility:hidden}
+ .place-list{top:58px;bottom:70px}
+ dialog{max-height:94dvh;padding:16px 20px}
+}
+ 
+@media(max-width:600px){#toast{top:calc(156px + env(safe-area-inset-top))}}
+/* 平板（601–900px）：工具列改橫排，避免和季節天氣框重疊；開面板時收起右下工具 */
+@media(max-width:900px) and (min-width:601px){
+ .world-tools{flex-direction:row}
+ body.panel-open .environment-controls,body.panel-open .world-tools{visibility:hidden}
+}
+/* 手機橫放：旅程卡縮成兩行；天氣改成按鈕展開；居民對話放右下 */
+@media(max-height:500px) and (min-width:601px){
+ .journey{top:76px;width:300px;padding:6px 8px 6px 12px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:0 8px}
+ .journey .row{grid-column:1;min-width:0;justify-content:flex-start}
+ .journey .row strong{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .journey .row button,.journey #passport{font-size:12px;padding:6px 10px;width:auto}
+ .journey #passport{grid-column:2;grid-row:1}
+ .journey #stats{grid-column:1/-1;font-size:12px;margin:0 0 2px}
+ #env-toggle{display:block}
+ .environment-controls{display:none}
+ body.env-open .environment-controls{display:grid}
+ .bubble{left:auto;right:14px;transform:none;bottom:64px;width:340px;max-height:calc(100dvh - 140px);overflow:auto;padding:14px}
+ #skip-film{bottom:64px}
+ #toast{top:auto;bottom:70px}
+}
